@@ -1,0 +1,126 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>BlogWeb</title>
+      <link rel="stylesheet" type="text/css" href="{% static 'Blog/index.css' %}">
+      <script src="{% static 'Blog/index.js' %}"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="test">
+     <section class="container-fluid text-danger">
+      <nav class="navbar navbar-expand-sm">
+          <a class="navbar-brand ml-5 text-danger" href="{% url 'index' %}"><i class="fa fa-home" aria-hidden="true"></i></a>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+              aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav mr-auto mt-2 ml-4 mt-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'blog' %}">Blog_Corner</a>
+                  </li>
+                  <li class="nav-item ml-4">
+                      <a class="nav-link" href="{% url 'confession' %}">Confession_Corner</a>
+                  </li>
+                  
+              </ul>
+
+              <ul class="navbar-nav ml-auto mr-4">
+              {% if user.is_authenticated %}
+                 <li class="nav-item">
+                      <a class="nav-link" href="{% url 'profile' %}"> <i class="fa fa-user" aria-hidden="true"></i><i>__Profile</i></a>
+                  </li>
+                  <li class="nav-item ml-4">
+                      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  </li>
+              {% else %}
+                <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+                  </li>
+                  <li class="nav-item ml-4">
+                      <a class="nav-link" href="{% url 'register' %}">Register</a>
+                  </li>
+              
+              {% endif %}
+                  
+                  
+              </ul>
+          </div>
+      </nav>
+   </section>
+   {% block content %}
+   <div class="container mt-4">
+       <div class="jumbotron">
+           <h1 class="display-3">Blog and Confession</h1>
+           <p class="lead"><i class="fa fa-book" aria-hidden="true"></i></p>
+           <hr class="my-2">
+           <p id="tips">More info</p>
+       </div>
+   </div>
+      
+    <div class="container bg-grey mt-4">
+    <h2 class="text-center">SERVICES</h2>
+      <div class="row">
+        <div class="col-sm mr-4">
+            <div class="card text-center">
+              <img class="card-img-top" src="{% static 'img/blog.jpg' %}" alt="">
+              <div class="card-body bg-primary">
+                <h4 class="card-title">Blog Writing</h4>
+                <p class="card-text">Explore</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm mr-4">
+            <div class="card text-center">
+              <img class="card-img-top" src="{% static 'img/confession.jpg' %}" alt="">
+              <div class="card-body bg-danger">
+                <h4 class="card-title">Confession Writing</h4>
+                <p class="card-text">As your wish</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card text-center">
+              <img class="card-img-top" src="{% static 'img/security.jpg' %}" alt="">
+              <div class="card-body bg-success">
+                <h4 class="card-title">Security</h4>
+                <p class="card-text">Trust</p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>    
+        
+      
+  <div class="container bg-grey mt-4">
+    <h2 class="text-center">CONTACT</h2>
+    <div class="row">
+       <div class="col-sm-4 ml-4 text-center">
+          <h3><i class="fa fa-address-book" aria-hidden="true"></i></h3>
+          <p> <i class="fa fa-location-arrow" aria-hidden="true">Purnea, Bihar</i></p>
+          <p> <i class="fa fa-phone" aria-hidden="true">+919771572201</i></p>
+           <p><i class="fa fa-envelope" aria-hidden="true">gksagar260@gmail.com</i></p>
+           <h2 class="mr-4">
+             <span><a href=""><i class="fa fa-linkedin text-info" aria-hidden="true"></i></a></span>
+             <span><a href=""><i class="fa fa-github text-dark" aria-hidden="true"></i></a></span>
+           </h2>
+       </div>
+       <div class="col-sm-7 mb-4 ">
+          <form action="" method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+       </div>
+    </div>
+  </div>
+  {% endblock content %}
+</body>
+</html>

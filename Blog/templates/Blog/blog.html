@@ -1,0 +1,57 @@
+
+{% extends 'Blog/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+     <div class="container-fluid">
+       <h1 class="mt-4 ml-4"><a href="{% url 'add_blog' %}"><i class="fa fa-plus text-danger" aria-hidden="true"></i></a></h1>
+     </div>
+     <div class="container mb-4">
+
+     {% for b in blog_data %}
+      <div class="media border p-3 mt-4">
+            <img src="{{b.blog_img.url}}" alt="" class="mr-3 mt-3 rounded" style="width:80px;">
+            <div class="media-body">
+            <h4>{{b.title}}</h4><small><i>Posted on {{b.date_blog}}</i></small><hr>
+            <p>{{b.content}}</p>
+           </div>
+      </div>
+     {% endfor %}
+     </div>
+     <div class="container mt-4 mb-4" >
+       <div class="row">
+            <div class="col-sm-8">
+               <h3 class="text-danger">Why blog <i class="fa fa-question" aria-hidden="true"></i></h3>
+               <p>Blogging enables you to reach the billions of people that use the Internet. 
+               Blogging can help you promote yourself or your business. Blogging works as a method for attracting an audience 
+               because it provides something of value to them before asking for anything in return.</p>
+          </div>
+          <div class="col-sm-4 ">
+                   <img class="rounded-circle" src="{% static 'img/bloggif.gif' %}" alt="" width="400" height="234">
+          </div>
+       </div>
+          
+     </div>
+       
+       <div class="container mt-4 text-center">
+         <ul class="pagination">
+           {% if blog_data.has_previous %}
+              <li class="mr-4"> <a href="?page={{blog_data.previous_page_number}}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> </li>
+              {% else %}
+              <li class="disabled mr-4"><i class="fa fa-arrow-left" aria-hidden="true"></i></li>
+           {% endif %}
+            <li class="current">
+              {{blog_data.number}}
+            </li>
+           {% if blog_data.has_next %}
+              <li class="ml-4"><a href="?page={{blog_data.next_page_number}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+              {% else %}
+              <li class="disabled ml-4"><i class="fa fa-arrow-right" aria-hidden="true"></i></li>
+           {% endif %}
+
+         </ul>
+       </div>
+
+{% endblock content %}
+

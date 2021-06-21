@@ -1,0 +1,43 @@
+{% extends 'Blog/index.html' %}
+{% block content %}
+      <div class="container-fluid mb-4">
+          <div class="container mt-4 bg-danger">
+                  <h1 class="text-center"> <i class="fa fa-user" aria-hidden="true"></i></h1>
+                  <h2 class="text-center"><i>username: </i>{{user.username}}</h2>
+           </div>
+           <div class="row">
+                 <div class="col-sm">
+                 <h2 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i><span><i>__blog</i></span></h2>
+                 {% for b in user_blog %}
+                        <div class="media border p-3 mt-4">
+                              <img src="{{b.blog_img.url}}" alt="" class="mr-3 mt-3 rounded" style="width:80px;">
+                              <div class="media-body">
+                              <h4>{{b.author}} <span><a href="{% url 'edit' b.id %}"><i class="fa fa-pencil text-success" aria-hidden="true"></i></a></span> 
+                              <span><a href="{% url 'delete' b.id %}"><i class="fa fa-remove text-danger" aria-hidden="true"></i></a></span>
+                               </h4>
+                              <small><i>Posted on {{b.date_blog}}</i></small><hr>
+                              <p>{{b.content}}</p>
+                        </div>
+                        </div>
+                 {% endfor %}
+                 </div>
+                 <div class="col-sm">
+                 <h2 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i><i><span>__confession</span></i></h2>
+                 {% for b in user_confession %}
+                        <div class="media border p-3 mt-4">
+                              <img src="{{b.conf_img.url}}" alt="" class="mr-3 mt-3 rounded" style="width:80px;">
+                              <div class="media-body">
+                              <h4>{{b.writter}} <span><a href="{% url 'edit_confession' b.id %}"><i class="fa fa-pencil text-success" aria-hidden="true"></i></a></span> 
+                              <span><a href="{% url 'delete_conf' b.id %}"><i class="fa fa-remove text-danger" aria-hidden="true"></i></a></span>
+                               </h4>
+                              <small><i>Posted on {{b.date_posted}}</i></small><hr>
+                              <p>{{b.content}}</p>
+                        </div>
+                        </div>
+                 {% endfor %}
+                 </div>
+           </div>  
+      </div>
+      
+{% endblock content %}
+

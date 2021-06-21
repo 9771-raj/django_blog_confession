@@ -1,0 +1,21 @@
+.nav-link {
+      color: saddlebrown;
+      border-bottom: 1px solid red;
+}
+.card-img-top {
+      width: 100%;
+      height: 15vw;
+      object-fit: cover;
+  }
+  .jumbotron{
+        background-image: url('https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300');
+        background-repeat: no-repeat;
+        background-size: cover;
+        color:seagreen;
+  }
+  .pagination{
+     font-size: xx-large;   
+  }
+  .test{
+        background-color: slategray;
+  }
