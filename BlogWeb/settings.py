@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4aq5gd3p5c#broo=--z88f)sg1o%xpwsep&ti^u9g9rfsr^-$+'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gaurav-blog-confession.herokuapp.com','127.0.0.1']
 
@@ -79,9 +79,13 @@ WSGI_APPLICATION = 'BlogWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        
+        #'ENGINE': 'django.db.backends.sqlite3',
+       # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.mysql',
+        'NAME':'blogconfession',
+        'USER':'root',
+        'PASSWORD':os.environ['PASSWORD'],
+        'HOST':'localhost'
     }
 }
 
